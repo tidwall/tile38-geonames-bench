@@ -20,3 +20,4 @@ $ go get github.com/tidwall/tile38-geonames-bench
 $ tile38-geonames-bench
 ```
 
+The first run may take a while because it needs to download the geonames `allCountries.zip` file. It's pretty big.
