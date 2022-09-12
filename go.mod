@@ -1,4 +1,4 @@
-module github.com/tidwall/geonames
+module github.com/tidwall/tile38-geonames-bench
 
 go 1.19
 
