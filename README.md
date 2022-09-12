@@ -11,7 +11,7 @@ as `tile38-server --appendonly no`.
 ## Installing
 
 ```
-$ go install github.com/tidwall/tile38-geonames-bench
+$ go get github.com/tidwall/tile38-geonames-bench
 ```
 
 ## Running
