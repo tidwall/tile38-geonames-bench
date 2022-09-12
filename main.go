@@ -25,8 +25,10 @@ import (
 func main() {
 	var addr string
 	var noset bool
+	var max int
 	flag.StringVar(&addr, "addr", ":9851", "Tile38 address")
 	flag.BoolVar(&noset, "noset", false, "Do not load and set geonnames")
+	flag.IntVar(&max, "max", -1, "Maximum number of points. Default is all")
 	flag.Parse()
 	log.SetFlags(0)
 	rand.Seed(time.Now().UnixNano())
@@ -67,6 +69,9 @@ func main() {
 		rand.Shuffle(len(lines), func(i, j int) {
 			lines[i], lines[j] = lines[j], lines[i]
 		})
+		if max > -1 && max < len(lines) {
+			lines = lines[:max]
+		}
 		const chunk = 2321
 		var batch int
 		var total int
@@ -101,8 +106,10 @@ func main() {
 				}
 			}
 		}
+		fmt.Printf("\r")
 		lotsa.WriteOutput(os.Stdout, total, 1, time.Since(start), 0)
 	}
+
 	conn.Do("OUTPUT", "json")
 	lotsa.Output = os.Stdout
 	T := runtime.NumCPU()
